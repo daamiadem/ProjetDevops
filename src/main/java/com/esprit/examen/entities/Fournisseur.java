@@ -43,6 +43,51 @@ public class Fournisseur implements Serializable {
     private Set<SecteurActivite> secteurActivites;
     @OneToOne(cascade= CascadeType.ALL,fetch=FetchType.EAGER)
     private DetailFournisseur detailFournisseur;
+	public Long getIdFournisseur() {
+		return idFournisseur;
+	}
+	public void setIdFournisseur(Long idFournisseur) {
+		this.idFournisseur = idFournisseur;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getLibelle() {
+		return libelle;
+	}
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	public CategorieFournisseur getCategorieFournisseur() {
+		return categorieFournisseur;
+	}
+	public void setCategorieFournisseur(CategorieFournisseur categorieFournisseur) {
+		this.categorieFournisseur = categorieFournisseur;
+	}
+	public Set<Facture> getFactures() {
+		return factures;
+	}
+	public void setFactures(Set<Facture> factures) {
+		this.factures = factures;
+	}
+	public Set<SecteurActivite> getSecteurActivites() {
+		return secteurActivites;
+	}
+	public void setSecteurActivites(Set<SecteurActivite> secteurActivites) {
+		this.secteurActivites = secteurActivites;
+	}
+	public DetailFournisseur getDetailFournisseur() {
+		return detailFournisseur;
+	}
+	public void setDetailFournisseur(DetailFournisseur detailFournisseur) {
+		this.detailFournisseur = detailFournisseur;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
     
 
 	
