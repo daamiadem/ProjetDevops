@@ -8,11 +8,30 @@ pipeline {
                     url : 'https://github.com/daamiadem/ProjetDevops.git'; 
             }
         }
-        stage('Build,Sonar'){
-			steps {
-				bat "mvn package -f ProjetDevops"
-				bat "mvn deploy -f ProjetDevops"
-				bat "mvn sonar:sonar -f ProjetDevops"
-					}
-    }
+         stage('Quality Gate Status Check'){
+                  steps{
+                      script{
+			      withSonarQubeEnv('sonar') {
+			      sh "mvn compile sonar:sonar"
+                       	     	}
+			      timeout(time: 1, unit: 'HOURS') {
+			      def qg = waitForQualityGate()
+				      if (qg.status != 'OK') {
+					   error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				      }
+                    		}
+		    	    sh "mvn clean install"
+
+                 	}
+               	 }
+              }
+		stage("Maven Build") {
+            steps {
+                script {
+                    sh "mvn package -DskipTests=true"
+                }
+            }
+        }
+        
+}
 }
