@@ -30,12 +30,6 @@ pipeline {
                  
             }
         }
-        
-        stage ('Mvn SonarQube'){
-        	steps {
-        		  sh "mvn compile sonar:sonar"
-        	}
-       }
     }
 }
 
