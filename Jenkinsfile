@@ -33,24 +33,10 @@ pipeline {
         
 		stage('SonarQube analysis 1') {
             steps {
-                sh 'mvn clean package sonar:sonar'
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=ademdaami'
             }
         }
-        stage("Quality Gate 1") {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
-        stage('SonarQube analysis 2') {
-            steps {
-                sh 'gradle sonarqube'
-            }
-        }
-        stage("Quality Gate 2") {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
+       
         
     }
 }
