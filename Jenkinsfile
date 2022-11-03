@@ -31,13 +31,16 @@ pipeline {
             }
         }
         
-        stage('Build, Sonar'){
-			steps {
-				bat "mvn package -f ProjetDevops"
-				bat "mvn deploy -f ProjetDevops"
-				bat "mvn sonar:sonar -f ProjetDevops"
-					}
-				}
+		stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('My SonarQube Server') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'Maven 3.5') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
         
     }
 }
