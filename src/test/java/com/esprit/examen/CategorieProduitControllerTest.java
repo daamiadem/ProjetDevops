@@ -19,8 +19,8 @@ public class CategorieProduitControllerTest {
 	public void testAddCategory() {
 	//	List<Stock> stocks = stockService.retrieveAllStocks();
 	//	int expected=stocks.size();
-		//CategorieProduit categ = new CategorieProduit("code123","test category");
-		//CategorieProduit savedStock= categoryService.addStock(s);
+		CategorieProduit categ = new CategorieProduit((long) 2,"code123","test category",null);
+		CategorieProduit savedCategory= categoryService.addCategorieProduit(categ);
 		
 	//	assertEquals(expected+1, stockService.retrieveAllStocks().size());
 		//assertNotNull(savedStock.getLibelleStock());
