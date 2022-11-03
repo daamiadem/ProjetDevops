@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Unit tests') {
 			steps {
-				 sh 'mvn test -Dtest="CategorieProduitControllerTest"'
+				bat "mvn test -f ProjetDevops"
 			}}
     }
 }
