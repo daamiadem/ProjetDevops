@@ -31,11 +31,13 @@ pipeline {
             }
         }
         
-        stage('Quality Gate Status Check'){
-                  steps{
-                      bat "mvn sonar:sonar -f ProjetDevops "
-               	 }
-              }
+        stage('Build, Sonar'){
+			steps {
+				bat "mvn package -f ProjetDevops"
+				bat "mvn deploy -f ProjetDevops"
+				bat "mvn sonar:sonar -f ProjetDevops"
+					}
+				}
         
     }
 }
