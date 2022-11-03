@@ -33,13 +33,7 @@ pipeline {
         
         stage('Quality Gate Status Check'){
                   steps{
-                      script{
-			      withSonarQubeEnv('sonar') {
-			      sh "mvn compile sonar:sonar"
-                       	     	}
-			     
-
-                 	}
+                      bat "mvn sonar:sonar -f ProjetDevops "
                	 }
               }
         
