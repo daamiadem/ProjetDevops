@@ -29,7 +29,7 @@ class DevopsProjectApplicationTests {
 	//	List<Stock> stocks = stockService.retrieveAllStocks();
 	//	int expected=stocks.size();
 		l.info("Je vais tester l'ajout d'une categorie Produit");
-		CategorieProduit categ = new CategorieProduit((long) 6,"heytest","test category",null);
+		CategorieProduit categ = new CategorieProduit((long) 7,"testcode","test category",null);
 		CategorieProduit savedCategory= categoryService.addCategorieProduit(categ);
 		
 	//	assertEquals(expected+1, stockService.retrieveAllStocks().size());
