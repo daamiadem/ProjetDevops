@@ -7,18 +7,19 @@ pipeline {
                     git branch : 'hamza',
                     url : 'https://github.com/daamiadem/ProjetDevops.git';
             }
-            steps {
-                echo 'Building... ';
-                sh 'mvn clean install';
-            }
+        }
+        stage ('compile'){
             steps {
                 echo 'Compiling... ';
                 sh 'mvn compile';
             }
+        }
+        stage ('Test'){
             steps {
-                echo 'JUNIT / Mockito... ';
-                sh 'mvn test';
+                echo 'Testing... ';
+                sh 'mvn test'
             }
         }
+
     }
 }
