@@ -14,16 +14,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest()
-public class CategorieProduitControllerTest {
+
+@SpringBootTest
+ class CategorieProduitControllerTest {
 	private static final Logger l =LogManager.getLogger(CategorieProduitControllerTest.class);
 	@Autowired
 	ICategorieProduitService categoryService;
-	
+	@Test
+	void contextLoads() {
+	}
 	//testing Add method
 	@Test
-	public void testAddCategory() {
+	 void testAddCategory() {
 	//	List<Stock> stocks = stockService.retrieveAllStocks();
 	//	int expected=stocks.size();
 		l.info("Je vais tester l'ajout d'une categorie Produit");
