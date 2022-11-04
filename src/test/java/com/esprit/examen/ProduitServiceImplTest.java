@@ -16,13 +16,13 @@ import com.esprit.examen.entities.Produit;
 import com.esprit.examen.services.ICategorieProduitService;
 import com.esprit.examen.services.IProduitService;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+
 @SpringBootTest
-public class ProduitControllerTest {
+public class ProduitServiceImplTest {
 	public static final Logger l =LogManager.getLogger(ProduitControllerTest.class);
 	@Autowired
 	IProduitService produitService;
-
 	@Test
 	public void testAddProduit() {
 		List<Produit> produits = produitService.retrieveAllProduits();
@@ -39,4 +39,5 @@ public class ProduitControllerTest {
 		assertNotNull(savedProduit.getIdProduit());
 		produitService.deleteProduit(savedProduit.getIdProduit());
 		} 
+
 }

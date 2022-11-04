@@ -18,10 +18,6 @@ class DevopsProjectApplicationTests {
 	@Autowired
 	ICategorieProduitService categoryService;
 
-	@Test
-	void contextLoads() {
-	}
-
 	
 	//testing Add method
 	@Test

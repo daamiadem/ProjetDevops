@@ -1,8 +1,8 @@
 package com.esprit.examen.controllers;
-import java.util.Date;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.web.bind.annotation.*;
 import com.esprit.examen.entities.Produit;
 import com.esprit.examen.services.IProduitService;
@@ -22,8 +22,8 @@ public class ProduitRestController {
 	@GetMapping("/retrieve-all-produits")
 	@ResponseBody
 	public List<Produit> getProduits() {
-		List<Produit> list = produitService.retrieveAllProduits();
-		return list;
+		//List<Produit> list = produitService.retrieveAllProduits();
+		return produitService.retrieveAllProduits();
 	}
 
 	// http://localhost:8089/SpringMVC/produit/retrieve-produit/8
@@ -38,8 +38,8 @@ public class ProduitRestController {
 	@PostMapping("/add-produit")
 	@ResponseBody
 	public Produit addProduit(@RequestBody Produit p) {
-		Produit produit = produitService.addProduit(p);
-		return produit;
+		//Produit produit = produitService.addProduit(p);
+		return produitService.addProduit(p);
 	}
 
 	// http://localhost:8089/SpringMVC/produit/remove-produit/{produit-id}
