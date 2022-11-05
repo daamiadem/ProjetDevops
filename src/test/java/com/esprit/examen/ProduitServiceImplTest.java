@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class ProduitServiceImplTest {
-	public static final Logger l =LogManager.getLogger(ProduitControllerTest.class);
+	public static final Logger l =LogManager.getLogger(ProduitServiceImplTest.class);
 	@Autowired
 	IProduitService produitService;
 	@Test
