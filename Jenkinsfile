@@ -8,16 +8,22 @@ pipeline {
                     url : 'https://github.com/daamiadem/ProjetDevops.git';
             }
         }
+        stage ('Build'){
+            steps {
+                echo 'Building... ';
+                sh 'mvn clean install'
+            }
+        }
         stage ('compile'){
             steps {
                 echo 'Compiling... ';
-                sh 'mvn -f /var/lib/jenkins/workspace/ProjetDevops/pom.xml compile';
+                sh 'mvn compile';
             }
         }
         stage ('Test'){
             steps {
                 echo 'Testing... ';
-                sh 'mvn -f /var/lib/jenkins/workspace/ProjetDevops/pom.xml test';
+                sh 'mvn test';
             }
         }
 
