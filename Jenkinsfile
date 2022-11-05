@@ -11,15 +11,16 @@ pipeline {
         stage ('compile'){
             steps {
                 echo 'Compiling... ';
-                sh 'mvn compile';
+                sh 'mvn -f /var/lib/jenkins/workspace/ProjetDevops/pom.xml compile';
             }
         }
         stage ('Test'){
             steps {
                 echo 'Testing... ';
-                sh 'mvn test -Dtest="FactureServiceImpTest"';
+                sh 'mvn -f /var/lib/jenkins/workspace/ProjetDevops/pom.xml test';
             }
         }
+
 
     }
 }
