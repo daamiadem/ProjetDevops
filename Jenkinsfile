@@ -58,7 +58,7 @@ pipeline {
     	
     	stage('NEXUS') {
             steps {
-                sh 'mvn deploy -DevopsProject'
+                sh 'mvn deploy'
                   
             }
         }
