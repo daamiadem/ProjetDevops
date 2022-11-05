@@ -55,14 +55,13 @@ pipeline {
         
     }
     
-    	stage("Publish to Nexus Repository Manager") {
-            steps {
-                script {
-                    	bat 'mvn --deploy'
-                }
-            }
     	
-    
-    
-}
+    	stage('NEXUS') {
+            steps {
+                sh 'mvn deploy -DskipTests'
+                  
+            }
+        }
+    	
+    	
 }}
