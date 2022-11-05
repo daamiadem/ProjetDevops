@@ -8,6 +8,7 @@ pipeline {
                     url : 'https://github.com/daamiadem/ProjetDevops.git';
             }
         }
+
         stage ('Build'){
             steps {
                 echo 'Building... ';
