@@ -10,6 +10,14 @@ pipeline {
                         url : 'https://github.com/daamiadem/ProjetDevops.git';
                     }
                 }
+                
+                
+                stage('NEXUS') {
+            steps {
+                sh 'mvn deploy'
+                  
+            }
+        }
        
         stage('Testing maven') {
             steps {
@@ -56,12 +64,7 @@ pipeline {
     }
     
     	
-    	stage('NEXUS') {
-            steps {
-                sh 'mvn deploy'
-                  
-            }
-        }
+    	
     	
     	
 }}
