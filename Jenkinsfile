@@ -58,7 +58,7 @@ pipeline {
     	stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
-                    	bat "mvn deploy -f ProjetDevops"
+                    	bat "mvn deploy "
                 }
             }
     	
