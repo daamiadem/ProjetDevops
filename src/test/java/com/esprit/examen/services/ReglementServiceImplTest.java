@@ -39,7 +39,7 @@ class ReglementServiceImplTest {
         reglementService.addReglement(reglement);
         List<Reglement> reglements = reglementService.retrieveAllReglements();
         int size = reglements.size();
-        assertEquals(1, size);
+        assertEquals(2, size);
     }
 
     @Test
@@ -58,15 +58,5 @@ class ReglementServiceImplTest {
         assertNotNull(reglementService.retrieveReglement(reglement.getIdReglement()));
     }
 
-    @Test
-    void getChiffreAffaireEntreDeuxDate() throws ParseException {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = dateFormat.parse("2020-12-12");
-//        Date date2 = dateFormat.parse("2020-12-13");
-//        Reglement reglement = new Reglement(1L, 155, 55, true,date, null);
-//        Reglement reglement2 = new Reglement(2L, 100, 0, true,date2, null);
-//        reglementService.addReglement(reglement);
-//        reglementService.addReglement(reglement2);
-//        assertEquals(255, reglementService.getChiffreAffaireEntreDeuxDate(date, date2));
-    }
+
 }

@@ -25,46 +25,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class DevopsProjectApplicationTests {
 
-//	@Autowired
-//	private FactureServiceImpl factureService;
-//
-//	@MockBean
-//	private FactureRepository factureRepository;
-//
-//	@MockBean
-//	private DetailFactureRepository detailFactureRepository;
-//
-//	@MockBean
-//	private FournisseurRepository fournisseurRepository;
-//
-//
-//	@Test
-//	public void getFacturesTest() {
-//		when(factureRepository.findAll()).thenReturn(Stream
-//				.of(new Facture(1L, 10,1000,new Date(),null,null, null, null, null), new Facture(2L, 10,1000,new Date(),null,null, null, null, null))
-//				.collect(Collectors.toList())
-//		);
-//		assertEquals(2, factureService.retrieveAllFactures().size());
-//	}
-//
-//	@Test
-//	public void addFactureTest() {
-//		//mock detail facture
-//		DetailFacture detailFacture = new DetailFacture(77835L,65018,1650,33,15,null, null);
-//		//mock Fourrnisseur
-//
-//
-//		Facture facture = new Facture(1L, 10,1000,new Date(),null,null, null, null, null);
-//		when(factureRepository.save(facture)).thenReturn(facture);
-//		assertEquals(facture, factureService.addFacture(facture));
-//	}
-//
-//	@Test
-//	public void cancelFactureTest() {
-//		Facture facture = new Facture(1L, 10,1000,new Date(),null,null, null, null, null);
-//		factureService.cancelFacture(facture.getIdFacture());
-//		assertEquals(facture.getIdFacture(), facture.getIdFacture());
-//	}
-
+    @Test
+    void contextLoads() {
+    }
 
 }
