@@ -81,14 +81,7 @@ pipeline {
     	
     	 
         
-     stage('Deploy our image') {
-         steps {
-              withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
-              sh "docker tag devopsproject ademdaami/devopsproject:devopsproject"
-              sh "docker push ademdaami/devopsproject:devopsproject"
-            
-         }}
-     }
+    
      
        
      stage('Building image docker-compose') {
@@ -97,6 +90,14 @@ pipeline {
               sh "docker-compose up"
           }
         }
+        
+         stage('Deploy our image') {
+         steps {
+              withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
+              sh "docker push ademdaami/devopsproject:devopsproject"
+            
+         }}
+     }
      
      
      stage('Cleaning up') {
