@@ -11,7 +11,7 @@ services:
     environment:
         SPRING_DATASOURCE_URL: jdbc:mysql://mysql_2:3306/ProjetDevops?autoReconnect=true&useSSL=false
         SPRING_DATASOURCE_USERNAME: root
-        SPRING_DATASOURCE_PASSWORD: root
+       
     networks:
       - ci-network
     depends_on:
