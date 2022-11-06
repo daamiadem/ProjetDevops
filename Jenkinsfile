@@ -75,47 +75,31 @@ pipeline {
     }
     
     
+    
+     
      stage('Building image docker-compose') {
           steps {
 
               sh "docker-compose up"
           }
         }
+    	
+    	
+    	 
         
+     stage('Deploy our image') {
+         steps {
+              withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
+              sh "docker tag devopsproject ademdaami/devopsproject:devopsproject"
+              sh "docker push ademdaami/devopsproject:devopsproject"
+            
+         }}
+     }
      
      
-     stage('Building image') {
-      steps{
-        
-        script {
-            DOCKER_BUILDKIT=0
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        
-      }
-      }
-    }
-    stage('Push Docker Image') {
-      steps{
-           
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
-   stage('Remove Unused docker image') {
-      steps{
-          
-          bat "docker rmi $registry:$BUILD_NUMBER"
-      }
-    } 
-
-
-     
-    	
-    	
-    	
-    	
-    	
+     stage('Cleaning up') {
+         steps {
+            sh "docker rmi -f devopsproject"
+         }
+     }
 }}
