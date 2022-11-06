@@ -2,11 +2,7 @@ pipeline {
 
         agent any
     
-    environment {
-		registry = "ademdaami/devopsproject_devopsproject"
-		registryCredential = 'DockerHub'
-		dockerImage = ''
-}
+    
     
         stages {
                 stage('Check out Git'){
@@ -94,7 +90,7 @@ pipeline {
  			steps {
  			    withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
  			
-        	 sh "ademdaami/devopsproject_devopsproject"
+        	 sh "ademdaami/devopsproject"
         	}
         	}
         	}
