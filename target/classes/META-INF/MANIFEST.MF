@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: Adam
+Build-Jdk: 17.0.1
+Implementation-Title: DevopsProject
+Implementation-Version: 1.0
+Implementation-Vendor-Id: com.esprit.examen
+Implementation-URL: https://spring.io/projects/spring-boot/DevopsProject
+Created-By: Maven Integration for Eclipse
+
