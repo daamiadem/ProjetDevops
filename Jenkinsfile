@@ -13,12 +13,7 @@ pipeline {
                 }
                 
                 
-                stage('NEXUS') {
-            steps {
-                sh 'mvn deploy'
-                  
-            }
-        }
+          
        
         stage('Testing maven') {
             steps {
@@ -46,6 +41,13 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=ademdaami'
             }
         }
+        
+        stage('Nexus Repository Manager') {
+            steps {
+                script {
+					nexusArtifactUploader artifacts: [[artifactId: 'DevopsProject', classifier: '', file: 'target/DevopsProject-1.0.jar', type: 'jar']], credentialsId: 'NEXUS_CRED', groupId: 'com.esprit.examen', nexusUrl: '192.168.1.122:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0.0-SNAPSHOT'
+				}
+            }
        
         
         stage('JUnit and Mockito Test'){
