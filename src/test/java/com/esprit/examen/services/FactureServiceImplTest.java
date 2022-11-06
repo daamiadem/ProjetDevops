@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,61 +33,27 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class FactureServiceImplTest {
+    @Mock
+    FactureRepository factureRepository;
 
-//
-//    @Autowired
-//    FactureServiceImpl factureService;
-//    @MockBean
-//	private FactureRepository factureRepository;
-//
-//    @MockBean
-//    OperateurRepository operateurRepository;
-//
-//    //mock test facture
-//    Facture facture = new Facture(1L, 10,1000,new Date(),null,null, null, this.fournisseur, null);
-//
-//    //mock test detail facture
-//    DetailFacture detailFacture = new DetailFacture(77835L,65018,1650,33,15,null, null);
-//
-//    //mock test Fournisseur
-//    Fournisseur fournisseur = new Fournisseur(1L, "961298921", "Adelia", null , null, null, null);
-//
-//    @Test
-//    @Order(1)
-//    void retrieveAllFactures() {
-//        when(factureRepository.findAll()).thenReturn(Stream
-//				.of(new Facture(1L, 10,1000,new Date(),null,null, null, null, null), new Facture(2L, 10,1000,new Date(),null,null, null, null, null))
-//				.collect(Collectors.toList())
-//		);
-//		assertEquals(2, factureService.retrieveAllFactures().size());
-//    }
-//
-//    @Test
-//    @Order(2)
-//    void addFacture() {
-//        //mock detail facture
-//		DetailFacture detailFacture = new DetailFacture(77835L,65018,1650,33,15,null, null);
-//		//mock Fourrnisseur
-//
-//
-//		Facture facture = new Facture(1L, 10,1000,new Date(),null,null, null, null, null);
-//		when(factureRepository.save(facture)).thenReturn(facture);
-//		assertEquals(facture, factureService.addFacture(facture));
-//    }
-//
-//    @Test
-//    @Order(3)
-//    void cancelFacture() {
-//        when(factureRepository.findById(1L)).thenReturn(java.util.Optional.of(facture));
-//        factureService.cancelFacture(1L);
-//        assertEquals(facture.getArchivee(), true);
-//    }
-//
-//    @Test
-//    @Order(4)
-//    void retrieveFacture() {
-//        when(factureRepository.findById(1L)).thenReturn(java.util.Optional.of(facture));
-//        assertEquals(facture, factureService.retrieveFacture(1L));
-//    }
+    @InjectMocks
+    FactureServiceImpl factureService;
+
+    Facture facture = new Facture(1L,10,100,null,null, false,null,null,null);
+    List<Facture> factures = new ArrayList<Facture>(){
+        {
+            add(new Facture(2L,20,100,null,null, false,null,null,null));
+            add(new Facture(3L,30,150,null,null, false,null,null,null));
+            add(new Facture(4L,40,250,null,null, false,null,null,null));
+        }
+    };
+
+    @Test
+    void retieveAllFactures(){
+        Mockito.doReturn(factures).when(factureRepository).findAll();
+        List<Facture> factures = factureService.retrieveAllFactures();
+        Assertions.assertNotNull(factures);
+
+    }
 
 }
