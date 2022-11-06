@@ -74,13 +74,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
-<distributionManagement>
-<repository>
-<id>deploymentRepo</id>
-<name>Nexus Repository</name>
-<url>http://192.168.1.122:8081/repository/maven-releases/</url>
-</repository>
-</distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -122,6 +116,17 @@
           <version>3.0.0</version>
         </plugin>		</plugins>
 	</build>
-
+<distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Releases</name>
+      <url>http://192.168.1.122:8081/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Snapshot</name>
+      <url>http://192.168.1.122:8081/repository/maven-snapshots</url>
+    </snapshotRepository>
+</distributionManagement>
 </project>
 	
