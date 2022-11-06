@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    withCredentials([string(credentialsId: 'azzabihamza', variable: 'docker')]) {
-        // some block
-    }
+
 
     stages {
         stage ('Checkout GIT'){
