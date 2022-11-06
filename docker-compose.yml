@@ -26,7 +26,7 @@ services:
       - mysqldb
     
   mysqldb:
-    image: mysql
+    image: mysql:8
     ports:
       - "3306:3306"
     security_opt:
