@@ -67,7 +67,7 @@ pipeline {
                 }
             }
         
-    }}
+    }
     
     
     
@@ -75,8 +75,7 @@ pipeline {
     	
     	
     	 
-      
-    
+        
     
      
        
@@ -84,14 +83,17 @@ pipeline {
            	steps {
        		 sh "docker build -t ademdaami/devopsproject_devopsproject ."
        		}
-       		}   
-       		
-       		  stage('Docker-compose') {	     
-				steps {
-              sh "docker-compose up"	            
-                }  
-        }     
+       		}        
         
+        
+        
+        
+        
+        stage ('Docker-compose runing'){
+        	steps{
+        		sh "docker-compose up"
+        	}
+        }
         
         stage('Push image') {
  			steps {
