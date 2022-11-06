@@ -87,9 +87,9 @@ pipeline {
        		}   
        		
        		  stage('Docker-compose') {	     
-				{
+				
               sh "docker-compose up"	            
-                  }
+                  
         }     
         
         
