@@ -65,7 +65,11 @@ stage('Push images to Dockerhub') {
         }
     }
 
-
+    stage("Email"){
+           steps{
+               emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'hamza.azzabi@esprit.tn'
+           }
+    }
 
     }
     post {
@@ -73,4 +77,5 @@ stage('Push images to Dockerhub') {
             junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
         }
     }
+
 }
