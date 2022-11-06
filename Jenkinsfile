@@ -83,30 +83,27 @@ pipeline {
     
      
        
-    stage('Building our image') {
-		steps {
-			script {
-			dockerImage = docker.build registry + ":$BUILD_NUMBER"
-}
-}
-}
+			stage('Build image') {
+           	steps {
+       		 sh "docker build -t ademdaami/devopsproject_devopsproject ."
+       		}
+       		}        
         
         
+        stage('Push image') {
+ 			steps {
+ 			    withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
+ 			
+        	 sh "ademdaami/devopsproject_devopsproject"
+        	}
+        	}
+        	}
         
-        
-      stage('Deploy our image') {
-		steps {
-			script {
-				docker.withRegistry( '', registryCredential ) {
-				dockerImage.push()
-							}
-					}
-				}
-		}
+      
         
     stage('Cleaning up') {
          steps {
-			sh "docker rmi $registry:$BUILD_NUMBER"        
+			sh "docker rmi -f devopsproject"
          }
      }    
      
