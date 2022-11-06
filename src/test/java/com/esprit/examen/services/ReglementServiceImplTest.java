@@ -3,12 +3,14 @@ package com.esprit.examen.services;
 import com.esprit.examen.entities.Reglement;
 import com.esprit.examen.repositories.ReglementRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,10 +28,8 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-@Slf4j
+
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
 class ReglementServiceImplTest {
 
     @Mock
@@ -37,10 +38,22 @@ class ReglementServiceImplTest {
     @InjectMocks
     ReglementServiceImpl reglementService;
 
+    Reglement reglement = new Reglement(1L,155, 55, true,null, null);
+    List<Reglement> reglements = new ArrayList<Reglement>(){
+        {
+            add(new Reglement(2L,550, 0, true,null, null));
+            add(new Reglement(3L,200, 15, true,null, null));
+            add(new Reglement(4L,100, 0, true,null, null));
+        }
+    };
+
+
+
     @Test
     void retrieveAllReglements() throws ParseException{
-        when(reglementRepository.findAll()).thenReturn(Stream.of(new Reglement(1L, 155, 55, true,null, null), new Reglement(2L, 100, 25, true,null, null)).collect(Collectors.toList()));
-        assertEquals(2, reglementService.retrieveAllReglements().size());
+        Mockito.doReturn(reglements).when(reglementRepository).findAll();
+        List<Reglement> reglements = reglementService.retrieveAllReglements();
+        Assertions.assertNotNull(reglements);
     }
 
 //

@@ -29,8 +29,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@TestMethodOrder(org.junit.jupiter.api.MethodOrderer.OrderAnnotation.class)
+
 @ExtendWith(MockitoExtension.class)
 class FactureServiceImplTest {
 
