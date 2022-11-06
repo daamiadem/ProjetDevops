@@ -2,6 +2,13 @@ pipeline {
 
         agent any
     
+    
+    	environment {
+        registry="ademdaami/devopsproject"
+        registryCredential='DockerHub'
+        dockerImage =''
+    }
+    
         stages {
                 stage('Check out Git'){
                    
@@ -74,6 +81,38 @@ pipeline {
               sh "docker-compose up -d"
           }
         }
+        
+     
+     
+     stage('Building image') {
+      steps{
+          dir("DevopsProject") {
+        script {
+            DOCKER_BUILDKIT=0
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+      }
+    }
+    stage('Push Docker Image') {
+      steps{
+             dir("DevopsProject") {
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }}
+        }
+      }
+    }
+   stage('Remove Unused docker image') {
+      steps{
+          
+          bat "docker rmi $registry:$BUILD_NUMBER"
+      }
+    } 
+
+
+     
     	
     	
     	
