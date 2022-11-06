@@ -3,11 +3,6 @@ pipeline {
         agent any
     
     
-    	environment {
-        registry="ademdaami/devopsproject"
-        registryCredential='DockerHub'
-        dockerImage ='devopsproject'
-    }
     
         stages {
                 stage('Check out Git'){
@@ -93,10 +88,10 @@ pipeline {
         
         stage('Push Docker Image') {
       steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
+     
+          withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
+     	  sh "docker push ademdaami/devopsproject:devopsproject"
+          
         }
       }
     }
