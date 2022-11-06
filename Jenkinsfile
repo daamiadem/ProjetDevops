@@ -15,16 +15,11 @@ pipeline {
                 sh 'mvn clean';
             }
         }
+
         stage ('compile'){
             steps {
                 echo 'Compiling... ';
-                sh 'mvn compile';
-            }
-        }
-        stage ('Nexus') {
-            steps {
-                echo 'Nexus... ';
-                sh 'mvn clean package deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=ProjetDevops -Dversion=0.0.1-SNAPSHOT -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://http://192.168.1.106:8081//repository/maven-snapshots/ -Dfile=target/ProjetDevops-0.0.1-SNAPSHOT.jar';
+                sh 'mvn -f /var/lib/jenkins/workspace/SpringIOC/pom.xml compile';
             }
         }
         stage ('Test'){
@@ -34,6 +29,25 @@ pipeline {
             }
         }
 
+        stage('SonarQube analysis ') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+            }
+        }
 
+        stage('NEXUS') {
+            steps {
+                sh 'mvn redeploy -DskipTests'
+
+            }
+        }
+
+
+
+    }
+    post {
+        always {
+            junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+        }
     }
 }
