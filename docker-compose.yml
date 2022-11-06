@@ -34,7 +34,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=ProjetDevops
-   
+    volumes:
+      -  /home/data:/var/lib/mysql:rw
     networks:
       - ci-network
 
