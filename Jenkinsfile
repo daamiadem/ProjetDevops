@@ -99,7 +99,7 @@ pipeline {
         
     stage('Cleaning up') {
          steps {
-			sh "docker rmi -f devopsproject"
+			sh "docker rmi -f devopsproject_devopsproject"
          }
      }    
      
