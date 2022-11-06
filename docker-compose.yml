@@ -14,7 +14,7 @@ services:
   backend-service:
     image: rymabensalah/backend
     ports:
-      - "8088:8089"
+      - "8089:8089"
     environment:
         SPRING_DATASOURCE_URL: jdbc:mysql://localhost/ProjetDevops
         SPRING_DATASOURCE_USERNAME: root
