@@ -74,11 +74,7 @@ pipeline {
    
     	
     	
-    	  stage ('Docker-compose runing'){
-        	steps{
-        		sh "docker-compose up -d"
-        	}
-        }
+    	 
         
     
      
