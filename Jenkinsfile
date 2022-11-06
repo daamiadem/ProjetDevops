@@ -6,7 +6,7 @@ pipeline {
     	environment {
         registry="ademdaami/devopsproject"
         registryCredential='DockerHub'
-        dockerImage =''
+        dockerImage ='devopsproject'
     }
     
         stages {
@@ -91,18 +91,20 @@ pipeline {
           }
         }
         
-         stage('Deploy our image') {
-         steps {
-              withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
-              sh "docker push ademdaami/devopsproject:devopsproject"
-            
-         }}
-     }
+        stage('Push Docker Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
      
      
      stage('Cleaning up') {
          steps {
-            sh "docker rmi -f devopsproject"
+            sh "docker rmi $registry:$BUILD_NUMBER"
          }
      }
 }}
