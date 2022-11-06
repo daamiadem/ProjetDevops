@@ -106,7 +106,14 @@ pipeline {
          steps {
 			sh "docker rmi -f devopsproject_devopsproject"
          }
-     }    
+     }   
+     
+     
+     stage("Email"){
+           steps{
+               emailext attachLog: true, body: "the result is :  ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'adem.daami@esprit.tn'
+           }
+       } 
      
      
     
