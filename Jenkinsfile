@@ -25,7 +25,7 @@ pipeline {
                 sh 'mvn -f /var/lib/jenkins/workspace/SpringIOC/pom.xml compile';
             }
         }
-        stage ('Test'){
+        stage ('Unit Test and Mockito'){
             steps {
                 echo 'Testing... ';
                 sh 'mvn test';
@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-stage('Push images to Dockerhub') {
+    stage('Push images to Dockerhub') {
             steps {
                 script{
 
@@ -64,6 +64,13 @@ stage('Push images to Dockerhub') {
 
         }
     }
+
+    stage('Cleaning up'){
+        steps{
+            sh 'docker rmi -f backend-service'
+        }
+    }
+
 
     stage("Email"){
            steps{
