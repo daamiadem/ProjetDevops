@@ -86,20 +86,25 @@ pipeline {
           }
         }
         
-        stage('Push Docker Image') {
-      steps{
-     
-          withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
-     	  sh "docker push ademdaami/devopsproject:devopsproject"
-          
-        }
-      }
-    }
-     
-     
-     stage('Cleaning up') {
+        
+        
+        
+        stage('Deploy our image') {
          steps {
-            sh "docker rmi $registry:$BUILD_NUMBER"
-         }
+              withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
+              sh "docker tag devopsproject ademdaami/devopsproject:devopsproject"
+              sh "docker push ademdaami/devopsproject:devopsproject"
+            
+         }}
      }
+        
+    stage('Cleaning up') {
+         steps {
+            sh "docker rmi -f uu_app_1"
+        
+         }
+     }    
+     
+     
+    
 }}
