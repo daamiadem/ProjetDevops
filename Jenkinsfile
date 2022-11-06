@@ -67,7 +67,7 @@ pipeline {
                 }
             }
         
-    }
+    }}
     
     
     
@@ -75,11 +75,8 @@ pipeline {
     	
     	
     	 
-        stage('Docker-compose') {	     
-				{
-              sh "docker-compose up"	            
-                  }
-        }
+      
+    
     
      
        
@@ -87,7 +84,13 @@ pipeline {
            	steps {
        		 sh "docker build -t ademdaami/devopsproject_devopsproject ."
        		}
-       		}        
+       		}   
+       		
+       		  stage('Docker-compose') {	     
+				{
+              sh "docker-compose up"	            
+                  }
+        }     
         
         
         stage('Push image') {
