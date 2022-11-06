@@ -76,13 +76,7 @@ pipeline {
     
     
     
-     
-     stage('Building image docker-compose') {
-          steps {
-
-              sh "docker-compose up"
-          }
-        }
+   
     	
     	
     	 
@@ -95,6 +89,14 @@ pipeline {
             
          }}
      }
+     
+       
+     stage('Building image docker-compose') {
+          steps {
+
+              sh "docker-compose up"
+          }
+        }
      
      
      stage('Cleaning up') {
