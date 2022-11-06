@@ -1,0 +1,30 @@
+version: "3.1"
+services:
+  backend-service:
+    image: azzabihamza/backend-service
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3307/ProjetDevops?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+    networks:
+      - ci-network
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql
+    ports:
+      - "3307:3307"
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=ProjetDevops
+
+    networks:
+      - ci-network
+
+networks:
+  ci-network:
