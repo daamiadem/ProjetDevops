@@ -83,12 +83,13 @@ pipeline {
     
      
        
-     stage('Building image docker-compose') {
-          steps {
-
-              sh "docker-compose up"
-          }
-        }
+    stage('Building our image') {
+		steps {
+			script {
+			dockerImage = docker.build registry + ":$BUILD_NUMBER"
+}
+}
+}
         
         
         
