@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    withCredentials([string(credentialsId: 'azzabihamza', variable: 'docker')]) {
+        // some block
+    }
+
     stages {
         stage ('Checkout GIT'){
             steps {
@@ -41,11 +46,12 @@ pipeline {
 
             }
         }
-        stage('docker compose') {
+        stage('Build backend docker image') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker build -t azzabihamza/backend-service .'
             }
         }
+
 
 
 
