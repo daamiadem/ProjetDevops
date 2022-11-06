@@ -86,21 +86,21 @@ pipeline {
      
      stage('Building image') {
       steps{
-          dir("DevopsProject") {
+        
         script {
             DOCKER_BUILDKIT=0
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
+        
       }
       }
     }
     stage('Push Docker Image') {
       steps{
-             dir("DevopsProject") {
+           
         script {
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
-          }}
+          }
         }
       }
     }
