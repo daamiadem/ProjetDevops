@@ -2,7 +2,11 @@ pipeline {
 
         agent any
     
-    
+    environment {
+		registry = "ademdaami/devopsproject_devopsproject"
+		registryCredential = 'DockerHub'
+		dockerImage = ''
+}
     
         stages {
                 stage('Check out Git'){
@@ -89,19 +93,19 @@ pipeline {
         
         
         
-        stage('Deploy our image') {
-         steps {
-              withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
-              sh "docker tag devopsproject ademdaami/devopsproject:devopsproject"
-              sh "docker push ademdaami/devopsproject:devopsproject"
-            
-         }}
-     }
+      stage('Deploy our image') {
+		steps {
+			script {
+				docker.withRegistry( '', registryCredential ) {
+				dockerImage.push()
+							}
+					}
+				}
+		}
         
     stage('Cleaning up') {
          steps {
-            sh "docker rmi -f uu_app_1"
-        
+			sh "docker rmi $registry:$BUILD_NUMBER"        
          }
      }    
      
