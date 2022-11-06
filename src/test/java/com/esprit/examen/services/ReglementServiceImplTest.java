@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -56,39 +57,22 @@ class ReglementServiceImplTest {
         Assertions.assertNotNull(reglements);
     }
 
-//
-//    @Autowired
-//    IReglementService reglementService;
-//
-//    @Autowired
-//    FactureServiceImpl factureService;
-//
-//    @Test
-//    void retrieveAllReglements() throws ParseException {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = dateFormat.parse("2020-12-12");
-//        Reglement reglement = new Reglement(1L, 155, 55, true,date, null);
-//        reglementService.addReglement(reglement);
-//        List<Reglement> reglements = reglementService.retrieveAllReglements();
-//        int size = reglements.size();
-//        assertEquals(2, size);
-//    }
-//
-//    @Test
-//    void addReglement() throws ParseException {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = dateFormat.parse("2020-12-12");
-//        Reglement reglement = new Reglement(1L, 155, 55, true,date, null);
-//        reglementService.addReglement(reglement);
-//        assertNotNull(reglementService.retrieveReglement(reglement.getIdReglement()));
-//    }
-//
-//    @Test
-//    void retrieveReglement() {
-//        Reglement reglement = new Reglement(1L, 155, 55, true, null, null);
-//        reglementService.addReglement(reglement);
-//        assertNotNull(reglementService.retrieveReglement(reglement.getIdReglement()));
-//    }
+
+
+    @Test
+    void addReglement() throws ParseException {
+        Reglement reglement = new Reglement(1L,155, 55, true,null, null);
+        Mockito.when(reglementRepository.save(Mockito.any(Reglement.class))).thenReturn(reglement);
+        Reglement reglement1 = reglementService.addReglement(reglement);
+        Assertions.assertNotNull(reglement1);
+    }
+
+    @Test
+    void retrieveReglement() {
+        Mockito.when(reglementRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(reglement));
+        Reglement reglement1 = reglementService.retrieveReglement(1L);
+        Assertions.assertNotNull(reglement1);
+    }
 
 
 }
