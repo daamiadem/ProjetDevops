@@ -90,7 +90,7 @@ pipeline {
  			steps {
  			    withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
  			
-        	 sh "ademdaami/devopsproject"
+        	  sh "docker push ademdaami/devopsproject_devopsproject"
         	}
         	}
         	}
