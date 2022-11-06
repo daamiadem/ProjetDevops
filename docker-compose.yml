@@ -1,7 +1,14 @@
-version: "3.1"
+version: "3"
 services:
 
-
+  front-service:
+    image: rymabensalah/frontend
+    ports:
+      - "80:80"
+   
+    networks:
+      - ci-network
+   
 
    
   backend-service:
@@ -9,8 +16,9 @@ services:
     ports:
       - "8088:8089"
     environment:
-        SPRING_DATASOURCE_URL: jdbc:mysql://mysql_2:3306/ProjetDevops?autoReconnect=true&useSSL=false
+        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/ProjetDevops
         SPRING_DATASOURCE_USERNAME: root
+        spring.datasource.password:
        
     networks:
       - ci-network
