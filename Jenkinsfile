@@ -74,7 +74,11 @@ pipeline {
    
     	
     	
-    	 
+    	  stage ('Docker-compose runing'){
+        	steps{
+        		sh "docker-compose up"
+        	}
+        }
         
     
      
@@ -89,11 +93,7 @@ pipeline {
         
         
         
-        stage ('Docker-compose runing'){
-        	steps{
-        		sh "docker-compose up"
-        	}
-        }
+       
         
         stage('Push image') {
  			steps {
