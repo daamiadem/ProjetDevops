@@ -56,4 +56,14 @@ class FactureServiceImplTest {
 
     }
 
+    @Test
+    void addFacture(){
+        Facture facture = new Facture(1L,10,100,null,null, false,null,null,null);
+        Mockito.doReturn(facture).when(factureRepository).save(facture);
+        Facture facture1 = factureService.addFacture(facture);
+        Assertions.assertNotNull(facture1);
+    }
+
+
+
 }
