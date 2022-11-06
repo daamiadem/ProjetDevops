@@ -65,11 +65,7 @@ pipeline {
         }
     }
 
-    stage('Cleaning up'){
-        steps{
-            sh 'docker rmi -f backend-service'
-        }
-    }
+
 
 
     stage("Email"){
