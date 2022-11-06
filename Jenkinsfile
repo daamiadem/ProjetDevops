@@ -50,7 +50,20 @@ pipeline {
             }
         }
 
+stage('Push images to Dockerhub') {
+            steps {
+                script{
 
+                 withCredentials([string(credentialsId: 'azzabihamza', variable: 'docker')])  {
+              sh 'docker login -u azzabihamza -p ${docker}'
+
+             }
+              sh 'docker push azzabihamza/backend-service'
+
+            }
+
+        }
+    }
 
 
 
