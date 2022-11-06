@@ -18,7 +18,7 @@ services:
     environment:
         SPRING_DATASOURCE_URL: jdbc:mysql://localhost/ProjetDevops
         SPRING_DATASOURCE_USERNAME: root
-        spring.datasource.password:
+        spring_datasource_password: root 
        
     networks:
       - ci-network
