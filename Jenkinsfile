@@ -1,6 +1,7 @@
 pipeline {
 
         agent any
+    
         stages {
                 stage('Check out Git'){
                    
@@ -63,6 +64,14 @@ pipeline {
         
     }
     
+    
+     stage('Building image docker-compose') {
+          steps {
+
+              sh "docker-compose up -d"
+          }
+        }
+    	
     	
     	
     	
