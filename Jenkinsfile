@@ -114,6 +114,12 @@ pipeline {
                emailext attachLog: true, body: "the result is :  ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'adem.daami@esprit.tn'
            }
        } 
+       
+       stage("Docker Compose"){
+           steps{
+               sh "docker-compose up -d"
+           }
+       } 
      
      
     
