@@ -81,7 +81,7 @@ pipeline {
        
 			stage('Build image') {
            	steps {
-       		 sh "docker build -t ademdaami/devopsproject2_devopsproject ."
+       		 sh "docker build -t ademdaami/devopsproject_devopsproject ."
        		}
        		}        
         
@@ -95,7 +95,7 @@ pipeline {
  			steps {
  			    withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
  			
-        	  sh "docker push ademdaami/devopsproject2_devopsproject"
+        	  sh "docker push ademdaami/devopsproject_devopsproject"
         	}
         	}
         	}
@@ -104,7 +104,7 @@ pipeline {
         
     stage('Cleaning up') {
          steps {
-			sh "docker rmi -f devopsproject2_devopsproject"
+			sh "docker rmi -f ademdaami/devopsproject_devopsproject"
          }
      }   
      
